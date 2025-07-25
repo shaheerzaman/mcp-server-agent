@@ -143,4 +143,14 @@ mcp = FastMCP("PyPI query", log_level="WARNING")
 @mcp.tool()
 async def pypi_downloads(question: str, ctx: Context[ServerSession, None]) -> str:
     """Analyze downloads of packages from the Python package index PyPI to answer questions about package downloads."""
-    result = await pypi_agent.run(question, model=MCPSamplingModel(session=ctx.session))
+
+    result = await pypi_agent.run(
+        question,
+        model=MCPSamplingModel(session=ctx.session),
+        deps=Deps(mcp_context=ctx),
+    )
+    return result.output
+
+
+if __name__ == "__main__":
+    mcp.run()

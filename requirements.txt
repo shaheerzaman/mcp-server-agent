@@ -1,0 +1,3 @@
+pydantic-ai
+google-cloud-bigquery
+logfire

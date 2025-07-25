@@ -16,8 +16,9 @@ async def log_handler(params: LoggingMessageNotificationParams):
 
 
 server = MCPServerStdio(
-    command="uv", args=["run", "pypi_mcp_server.py"], log_handler=log_handler
+    command="python", args=["pypi_mcp_server.py"], log_handler=log_handler
 )
+
 libs_agent = Agent(
     "openai:gpt-4o",
     mcp_servers=[server],
